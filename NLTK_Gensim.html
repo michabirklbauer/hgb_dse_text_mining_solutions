@@ -36,6 +36,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -14464,10 +14465,6 @@ a.anchor-link {
   display: none;
 }
 
-.highlight  {
-  margin: 0.4em;
-}
-
 /* Input area styling */
 .jp-InputArea {
   overflow: hidden;
@@ -14477,9 +14474,26 @@ a.anchor-link {
   overflow: hidden;
 }
 
-.CodeMirror pre {
+.CodeMirror.cm-s-jupyter .highlight pre {
+/* weird, but --jp-code-padding defined to be 5px but 4px horizontal padding is hardcoded for pre.CodeMirror-line */
+  padding: var(--jp-code-padding) 4px;
   margin: 0;
-  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+
+}
+
+.jp-OutputArea-output pre {
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.jp-RenderedText pre {
+  color: var(--jp-content-font-color1);
+  font-size: var(--jp-code-font-size);
 }
 
 /* Using table instead of flexbox so that we can use break-inside property */
@@ -14525,6 +14539,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
   display: none;
 }
 
+@page {
+    margin: 0.5in; /* Margin for each printed piece of paper */
+}
+
 @media print {
   .jp-Cell-inputWrapper,
   .jp-Cell-outputWrapper {
@@ -14559,12 +14577,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
                 },
                 displayAlign: 'center',
                 CommonHTML: {
-                    linebreaks: { 
-                    automatic: true 
+                    linebreaks: {
+                    automatic: true
                     }
                 }
             });
-        
+
             MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         }
     }
@@ -14624,7 +14642,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>By iterating over the dataframe columns we can construct a "vanilla" list of documents that we can work on:</p>
+<p>By iterating over the dataframe columns we can construct a &quot;vanilla&quot; list of documents that we can work on:</p>
 
 </div>
 </div>
@@ -14670,9 +14688,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 
@@ -14764,9 +14780,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
@@ -14805,9 +14819,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
 
@@ -14894,9 +14906,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 
@@ -14989,9 +14999,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 
@@ -14999,7 +15007,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#34;me,that&#39;ll,myself,this,hasn,nor,below,what,during,to,in,again,s,mightn,is,haven&#39;t,any,didn&#39;t,other,about,mustn,her,being,couldn,won,hasn&#39;t,an,by,shan&#39;t,for,until,doesn,before,so,ain,hers,just,few,can,hadn&#39;t,while,who,your,yourself,it&#39;s,been,herself,hadn,them,both,you&#39;ve,wasn&#39;t,i,my,you&#39;d,his,ourselves,on,not,that,between,t,does,we,out,themselves,because,off,have,and,y,same,whom,haven,couldn&#39;t,above,wasn,was,up,having,the,at,itself,theirs,after,most,isn&#39;t,here,m,no,they,doesn&#39;t,needn&#39;t,she&#39;s,ve,which,am,you,you&#39;ll,their,ours,a,into,re,doing,how,wouldn,against,why,should,there,were,our,don,where,he,if,of,under,wouldn&#39;t,those,its,be,these,it,or,you&#39;re,ma,shan,more,ll,yourselves,o,once,aren&#39;t,himself,too,then,as,mustn&#39;t,had,now,won&#39;t,shouldn,some,needn,through,but,don&#39;t,didn,did,all,will,mightn&#39;t,each,weren,when,only,isn,very,d,down,weren&#39;t,with,should&#39;ve,aren,such,shouldn&#39;t,yours,from,than,further,are,over,him,do,has,she,own&#34;</pre>
+<pre>&#34;not,y,just,doing,as,who,any,some,i,they,than,there,m,from,only,be,isn,until,being,about,the,with,down,its,needn&#39;t,this,haven,before,o,your,same,needn,can,do,off,hadn&#39;t,re,shan&#39;t,wasn&#39;t,while,hasn&#39;t,ourselves,wouldn,under,it,his,has,of,weren&#39;t,itself,hadn,these,at,yourselves,ll,aren,that,did,both,more,so,shouldn&#39;t,him,for,you&#39;ve,on,or,ve,no,own,myself,mustn&#39;t,against,here,if,because,my,d,didn,you,where,out,that&#39;ll,few,doesn&#39;t,them,but,when,should&#39;ve,was,himself,s,weren,which,were,once,above,each,me,why,am,such,won,mightn,our,herself,it&#39;s,most,is,mustn,theirs,nor,isn&#39;t,couldn&#39;t,between,over,wasn,you&#39;re,hers,are,haven&#39;t,her,to,she,should,yours,doesn,couldn,up,their,again,will,ma,during,shan,very,had,does,themselves,other,a,further,shouldn,and,he,those,don,hasn,by,now,too,into,aren&#39;t,all,won&#39;t,didn&#39;t,you&#39;ll,we,have,ours,t,in,through,then,how,ain,mightn&#39;t,after,what,wouldn&#39;t,yourself,an,below,been,don&#39;t,you&#39;d,having,whom,she&#39;s&#34;</pre>
 </div>
 
 </div>
@@ -15041,9 +15049,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 
@@ -15051,7 +15057,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;das,einig,ich,solches,deinem,einen,dieses,manche,aber,unsere,in,dich,hatte,manchem,zum,ihm,vor,manches,seiner,oder,war,solche,seinen,wirst,haben,mancher,bei,doch,weiter,an,habe,damit,des,hatten,dies,welchen,andern,dieser,euch,einigen,so,unseren,er,kann,jeden,dann,anderes,dazu,hat,zur,sonst,wenn,dasselbe,jetzt,mein,um,solchen,zwischen,derselben,ihres,sondern,mit,allen,welche,demselben,mich,ihren,nichts,ihn,keiner,der,ander,wie,seines,keine,derselbe,ohne,meiner,nur,meinen,hin,deiner,manchen,ihnen,jenes,über,deinen,ihrer,eines,welchem,bis,diesen,durch,ein,anders,während,eure,deine,uns,unter,es,werde,eine,was,mir,wieder,dir,ins,muss,ihrem,sich,zwar,seine,wollen,bist,die,jenem,vom,weg,euer,jeder,ihr,anderm,also,zu,sind,am,alles,einigem,wir,denselben,seinem,einiger,anderer,meines,im,nun,diese,als,nach,unserem,dem,einmal,warst,aus,keinen,sehr,allem,hab,auch,solcher,hinter,soll,derer,bin,meinem,musste,anderen,einem,eurem,ist,wird,sollte,werden,gewesen,solchem,desselben,keinem,jede,alle,dein,können,einiges,von,welches,euren,noch,daß,deines,hier,andere,jene,jedem,sie,könnte,wollte,dessen,eures,und,da,dieselbe,auf,kein,welcher,aller,jener,einige,du,für,machen,ihre,jedes,weil,wo,würde,denn,will,diesem,meine,indem,einer,dass,unseres,viel,anderem,sein,anderr,gegen,man,dieselben,etwas,nicht,waren,eurer,unser,würden,ob,keines,dort,selbst,den,jenen&#39;</pre>
+<pre>&#39;er,solchem,solchen,dein,ihn,hat,man,unseren,eines,muss,nicht,diese,und,seines,einiges,manchem,ihr,dieses,einigem,mein,also,daß,seinen,sonst,wieder,manches,mich,vor,wollen,von,eine,dann,anderm,welches,seiner,wenn,mir,könnte,dazu,aller,während,welcher,ihre,aus,ist,jedes,hab,habe,gegen,andern,ihrem,ihres,solche,wollte,unseres,einmal,meinem,unser,keinem,dort,sich,des,anderer,meines,solcher,würde,dieser,welchem,ich,unter,zwar,uns,doch,weg,aber,oder,würden,ein,indem,jenes,keiner,weiter,bist,sondern,so,hatte,anderen,derer,ihnen,einigen,ihren,hier,seinem,dessen,über,welchen,dass,euren,bin,eure,sehr,werde,du,kann,unserem,zu,anderes,derselbe,jeden,jede,werden,eurem,sollte,ihrer,gewesen,einer,anderr,meinen,den,deinem,ob,sie,dieselbe,warst,demselben,damit,wirst,als,vom,hatten,bis,was,jenem,waren,nun,im,bei,nach,einiger,wird,haben,anders,dies,dem,jenen,musste,deine,ins,jener,hinter,am,diesem,da,deinen,dieselben,einige,zum,allen,der,dir,machen,eurer,hin,einen,die,jedem,deines,desselben,welche,sein,weil,können,zur,nur,anderem,ohne,alles,keines,wo,zwischen,das,andere,keine,denselben,will,manche,selbst,solches,durch,wie,alle,deiner,dich,manchen,es,soll,nichts,viel,diesen,mancher,euch,einem,sind,jetzt,meine,unsere,allem,eures,keinen,jeder,kein,für,mit,um,seine,euer,jene,auf,in,derselben,dasselbe,einig,an,noch,war,ihm,wir,etwas,meiner,auch,ander,denn&#39;</pre>
 </div>
 
 </div>
@@ -15115,9 +15121,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 
@@ -15154,12 +15158,12 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Gensim"><strong>Gensim</strong><a class="anchor-link" href="#Gensim">&#182;</a></h1><p><a href="https://radimrehurek.com/gensim/">https://radimrehurek.com/gensim/</a></p>
-<p>Gensim titles itself as "Topic Modelling for Humans" and is the third and final NLP library that we will have a look at. I have mainly used Gensim to build TF-IDF models and run text queries on datasets. We are going to use our NLTK preprocessed documents as input to build a dictionary, corpus and index with Gensim and calculate the TF-IDF matrix to run text queries on our data.</p>
+<p>Gensim titles itself as &quot;Topic Modelling for Humans&quot; and is the third and final NLP library that we will have a look at. I have mainly used Gensim to build TF-IDF models and run text queries on datasets. We are going to use our NLTK preprocessed documents as input to build a dictionary, corpus and index with Gensim and calculate the TF-IDF matrix to run text queries on our data.</p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15175,30 +15179,6 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>D:\Users\Micha\anaconda3\envs\text\lib\site-packages\gensim\similarities\__init__.py:15: UserWarning: The gensim.similarities.levenshtein submodule is disabled, because the optional Levenshtein package &lt;https://pypi.org/project/python-Levenshtein/&gt; is unavailable. Install Levenhstein (e.g. `pip install python-Levenshtein`) to suppress this warning.
-  warnings.warn(msg)
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -15302,9 +15282,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-OutputArea jp-Cell-outputArea">
-
 <div class="jp-OutputArea-child">
-
     
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
