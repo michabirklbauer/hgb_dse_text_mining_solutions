@@ -4,6 +4,9 @@ Solutions for the practical part of the lecture [Text Mining @ FH Hagenberg](htt
 
 ## Requirements
 
+Language:
+- [Python 3.12](https://www.python.org/downloads/)
+
 If you want to run the notebooks locally please install the requirements noted in `requirements.txt`:
 - `pip install -r requirements.txt`
 
@@ -21,4 +24,5 @@ For chapters 5 and 6 you will additionally need `tensorflow` and `transformers`:
 
 ## Contact
 
-[micha.birklbauer@fh-hagenberg.at](mailto:micha.birklbauer@fh-hagenberg.at)
+- [micha.birklbauer@gmail.com](mailto:micha.birklbauer@gmail.com)
+- [micha.birklbauer@fh-hagenberg.at](mailto:micha.birklbauer@fh-hagenberg.at)
